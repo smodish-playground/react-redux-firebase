@@ -101,7 +101,7 @@ export default function EventForm({
         <Button type="submit" floated="right" positive content="Submit" />
         <Button
           as={Link}
-          to="/events"
+          to="/events/"
           type="submit"
           floated="right"
           content="Cancel"
