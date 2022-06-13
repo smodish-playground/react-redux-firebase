@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react'
+import format from 'date-fns/format'
 
 const eventImageStyle = {
   filter: 'brightness(30%)',
@@ -34,7 +35,7 @@ export default function EventDetailsHeader({ event }) {
                   content={event.title}
                   style={{ color: 'white' }}
                 />
-                <p>{event.date}</p>
+                <p>{format(event.date, 'MMMM d, yyyy h:mm a')}</p>
                 <p>
                   Hosted by <strong>{event.hostedBy}</strong>
                 </p>
