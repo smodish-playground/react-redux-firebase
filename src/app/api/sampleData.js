@@ -6,19 +6,31 @@ export const sampleData = [
     category: 'culture',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'NY, USA',
-    venue: 'Empire State Building, 5th Avenue, New York, NY, USA',
+    city: {
+      address: 'NY, USA',
+      latlng: {
+        lat: 40.7484405,
+        lng: -73.98566440000002,
+      },
+    },
+    venue: {
+      address: 'Empire State Building, 5th Avenue, New York, NY, USA',
+      latlng: {
+        lat: 40.7484405,
+        lng: -73.98566440000002,
+      },
+    },
     hostedBy: 'Bob',
     hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
     attendees: [
       {
         id: 'a',
-        displayName: 'Bob',
+        name: 'Bob',
         photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
       },
       {
         id: 'b',
-        displayName: 'Tom',
+        name: 'Tom',
         photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
       },
     ],
@@ -30,19 +42,31 @@ export const sampleData = [
     category: 'drinks',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'London, UK',
-    venue: 'Punch & Judy, Henrietta Street, London, UK',
+    city: {
+      address: 'London, UK',
+      latlng: {
+        lat: 51.5118074,
+        lng: -0.12300089999996544,
+      },
+    },
+    venue: {
+      address: 'Punch & Judy, Henrietta Street, London, UK',
+      latlng: {
+        lat: 51.5118074,
+        lng: -0.12300089999996544,
+      },
+    },
     hostedBy: 'Tom',
     hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
     attendees: [
       {
         id: 'a',
-        displayName: 'Bob',
+        name: 'Bob',
         photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
       },
       {
         id: 'b',
-        displayName: 'Tom',
+        name: 'Tom',
         photoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
       },
     ],
