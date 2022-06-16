@@ -3,8 +3,13 @@ import EventList from './EventList'
 
 import { useSelector } from 'react-redux'
 
+import LoadingComponent from '../../../app/layout/LoadingComponent'
+
 export default function EventDashboard() {
   const { events } = useSelector((state) => state.event)
+  const { loading } = useSelector((state) => state.async)
+
+  if (loading) return <LoadingComponent />
 
   return (
     <Grid>
