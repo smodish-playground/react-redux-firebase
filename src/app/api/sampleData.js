@@ -8,14 +8,14 @@ export const sampleData = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
     city: {
       address: 'NY, USA',
-      latlng: {
+      latLng: {
         lat: 40.7484405,
         lng: -73.98566440000002,
       },
     },
     venue: {
       address: 'Empire State Building, 5th Avenue, New York, NY, USA',
-      latlng: {
+      latLng: {
         lat: 40.7484405,
         lng: -73.98566440000002,
       },
@@ -44,14 +44,14 @@ export const sampleData = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
     city: {
       address: 'London, UK',
-      latlng: {
+      latLng: {
         lat: 51.5118074,
         lng: -0.12300089999996544,
       },
     },
     venue: {
       address: 'Punch & Judy, Henrietta Street, London, UK',
-      latlng: {
+      latLng: {
         lat: 51.5118074,
         lng: -0.12300089999996544,
       },
