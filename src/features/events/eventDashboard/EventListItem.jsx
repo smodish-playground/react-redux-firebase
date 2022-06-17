@@ -4,6 +4,7 @@ import { Button, Icon, Item, List, Segment } from 'semantic-ui-react'
 import EventListAttendee from './EventListAttendee'
 import format from 'date-fns/format'
 import { deleteEventFromFirestore } from '../../../app/firestore/firestoreService'
+import { Label } from 'semantic-ui-react'
 
 export default function EventListItem({ event }) {
   return (
@@ -15,6 +16,14 @@ export default function EventListItem({ event }) {
             <Item.Content>
               <Item.Header content={event.title} />
               <Item.Description>Hosted by Bob</Item.Description>
+              {event.isCancelled && (
+                <Label
+                  style={{ top: '-40px' }}
+                  ribbon="right"
+                  color="red"
+                  content="This event hs been cancelled"
+                />
+              )}
             </Item.Content>
           </Item>
         </Item.Group>

@@ -49,3 +49,9 @@ export function updateEventOnFirestore(event) {
 export function deleteEventFromFirestore(eventId) {
   return db.collection('events').doc(eventId).delete()
 }
+
+export function cancelEventToggle(event) {
+  return db.collection('events').doc(event.id).update({
+    isCancelled: !event.isCancelled,
+  })
+}

@@ -14,14 +14,19 @@ import MyPlaceInput from '../../../app/common/form/MyPlaceInput'
 import useFirestoreDoc from '../../../app/hooks/useFirestoreDoc'
 import {
   addEventToFirestore,
+  cancelEventToggle,
   listenToEventFromFirestore,
   updateEventOnFirestore,
 } from '../../../app/firestore/firestoreService'
 import LoadingComponent from '../../../app/layout/LoadingComponent'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
+import { Confirm } from 'semantic-ui-react'
 
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch()
+  const [loadingCancel, setLoadingCancel] = useState(false)
+  const [confirmOpen, setConfirmOpen] = useState(false)
 
   const selectedEvent = useSelector((state) =>
     state.event.events.find((e) => e.id === match.params.id)
@@ -50,6 +55,18 @@ export default function EventForm({ match, history }) {
     }),
     date: Yup.string().required(),
   })
+
+  async function handleCancelToggle(event) {
+    setConfirmOpen(false)
+    setLoadingCancel(true)
+    try {
+      await cancelEventToggle(event)
+      setLoadingCancel(false)
+    } catch (error) {
+      setLoadingCancel(true)
+      toast.error(error.message)
+    }
+  }
 
   useFirestoreDoc({
     shouldExecute: !!match.params.id,
@@ -114,6 +131,20 @@ export default function EventForm({ match, history }) {
               dateFormat="MMMM d, yyyy h:mm a"
             />
 
+            {selectedEvent && (
+              <Button
+                loading={loadingCancel}
+                type="button"
+                floated="left"
+                color={selectedEvent.isCancelled ? 'green' : 'red'}
+                content={
+                  selectedEvent.isCancelled
+                    ? 'Reactivate event'
+                    : 'Cancel event'
+                }
+                onClick={() => setConfirmOpen(true)}
+              />
+            )}
             <Button
               loading={isSubmitting}
               disabled={!isValid || !dirty || isSubmitting}
@@ -133,6 +164,16 @@ export default function EventForm({ match, history }) {
           </Form>
         )}
       </Formik>
+      <Confirm
+        content={
+          selectedEvent?.isCancelled
+            ? 'This will reactivate the event - are you sure?'
+            : 'This will cancel the event - are you sure?'
+        }
+        open={confirmOpen}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => handleCancelToggle(selectedEvent)}
+      />
     </Segment>
   )
 }
