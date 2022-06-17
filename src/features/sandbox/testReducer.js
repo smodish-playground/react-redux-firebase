@@ -30,10 +30,10 @@ export function decrement(amount) {
     dispatch(asyncActionStart())
     try {
       await delay(1000)
-      throw 'oops'
+      throw new Error({ message: 'oops' })
     } catch (error) {
       dispatch(asyncActionError(error))
-      toast.error(error)
+      toast.error(error.message)
     }
   }
 }
