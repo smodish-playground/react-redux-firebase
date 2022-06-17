@@ -11,13 +11,14 @@ import EventDetailsHeader from './EventDetailsHeader'
 import EventDetailsInfo from './EventDetailsInfo'
 import EventDetailsSidebar from './EventDetailsSidebar'
 import LoadingComponent from '../../../app/layout/LoadingComponent'
+import { Redirect } from 'react-router-dom'
 
 export default function EventDetailsPage({ match }) {
   const dispatch = useDispatch()
   const event = useSelector((state) =>
     state.event.events.find((e) => e.id === match.params.id)
   )
-  const { loading } = useSelector((state) => state.async)
+  const { loading, error } = useSelector((state) => state.async)
 
   useFirestoreDoc({
     query: () => listenToEventFromFirestore(match.params.id),
@@ -25,9 +26,11 @@ export default function EventDetailsPage({ match }) {
     deps: [match.params.id, dispatch],
   })
 
-  if (loading || !event) {
+  if (loading || (!event && !error)) {
     return <LoadingComponent inverted={true} content="Loading Event ..." />
   }
+
+  if (error) return <Redirect to="/error" />
 
   return (
     <Grid>

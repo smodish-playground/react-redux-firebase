@@ -1,14 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Icon, Item, List, Segment } from 'semantic-ui-react'
 import EventListAttendee from './EventListAttendee'
-import { deleteEvent } from '../eventActions'
 import format from 'date-fns/format'
+import { deleteEventFromFirestore } from '../../../app/firestore/firestoreService'
 
 export default function EventListItem({ event }) {
-  const dispatch = useDispatch()
-
   return (
     <Segment.Group>
       <Segment>
@@ -41,7 +38,7 @@ export default function EventListItem({ event }) {
           color="red"
           floated="right"
           content="Delete"
-          onClick={() => dispatch(deleteEvent(event.id))}
+          onClick={() => deleteEventFromFirestore(event.id)}
         />
         <Button
           as={Link}
